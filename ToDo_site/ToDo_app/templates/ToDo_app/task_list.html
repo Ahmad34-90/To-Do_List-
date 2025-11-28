@@ -6,6 +6,12 @@
     <title>TODO LIST</title>
 </head>
 <body>
+    {% if request.user.is_authenticated %}
+    <p>Username = {{request.user}}</p>
+        
+    {% else %}
+        <a href="{% url "login" %}">Login</a>
+    {% endif %}
     <h1>TODO_LIST</h1>
     <a href="{% url "task-create" %}">Add New Task</a>
     <table>
