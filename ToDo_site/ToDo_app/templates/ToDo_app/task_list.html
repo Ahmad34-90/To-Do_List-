@@ -15,8 +15,12 @@
     {% else %}
         <a href="{% url "login" %}">Login</a>
     {% endif %}
-    <h1>TODO_LIST {{color}}</h1>
+    <h1>TODO_LIST</h1>
     <a href="{% url "task-create" %}">Add New Task</a>
+    <form method="GET">
+        <input type="text" name="search-area" value="{{search_input}}">
+        <input type="submit" value="submit">
+    </form>
     <table>
         <tr>
             <th>Items</th>
