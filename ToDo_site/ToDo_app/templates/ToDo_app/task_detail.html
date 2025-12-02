@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskDeail</title>
-</head>
-<body>
-    <h1>Task: {{object.title}}</h1>
-    <h4>Title: <span>{{object.title}}</span></h4>
-    <h4>Description: <span>{{object.description}}</span></h4>
-    <h4>Task complete or not:  <span>{{object.complete}}</span></h4>
-    <h4>Task Creation time: <span>{{object.create}}</span></h4>
-</body>
-</html>
+{% extends "ToDo_app/main.html" %}
+{% block content %}
+<h1>Task: {{object.title}}</h1>
+<h4>Title: <span>{{object.title}}</span></h4>
+<h4>Description: <span>{{object.description}}</span></h4>
+<h4>Task complete or not:  <span>{{object.complete}}</span></h4>
+<h4>Task Creation time: <span>{{object.create}}</span></h4>
+{% endblock content %}

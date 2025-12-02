@@ -1,44 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO LIST</title>
-</head>
-<body>
-    {% if request.user.is_authenticated %}
-        <p>Username = {{request.user}}</p>
-        <form action="{% url "logout" %}"method="POST">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
-    {% else %}
-        <a href="{% url "login" %}">Login</a>
-    {% endif %}
-    <h1>TODO_LIST</h1>
-    <a href="{% url "task-create" %}">Add New Task</a>
-    <form method="GET">
-        <input type="text" name="search-area" value="{{search_input}}">
-        <input type="submit" value="submit">
+{% extends "ToDo_app/main.html" %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <p>Username = {{request.user}}</p>
+    <form action="{% url "logout" %}"method="POST">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
     </form>
-    <table>
-        <tr>
-            <th>Items</th>
-            <th>Creation Time</th>
-            <th></th>
-            <th></th>
-        </tr>
-        {% for task in tasks %}
-        <tr>
-            <td>{{task.title}}</td>
-            <td>{{task.create}}</td>
-            <td><a href="{% url "task" task.id %}">view</a></td>
-            <td><a href="{% url "task-update" task.id %}">Edit</a></td>
-            <td><a href="{% url "task-confirm-delete" task.id %}">Delete</a></td>
-        </tr>
-        {% empty %}
-            <h3>Tasks are empty.</h3>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% else %}
+    <a href="{% url "login" %}">Login</a>
+{% endif %}
+<h1>TODO_LIST</h1>
+<a href="{% url "task-create" %}">Add New Task</a>
+<form method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="submit">
+</form>
+<table>
+    <tr>
+        <th>Items</th>
+        <th>Creation Time</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.title}}</td>
+        <td>{{task.create}}</td>
+        <td><a href="{% url "task" task.id %}">view</a></td>
+        <td><a href="{% url "task-update" task.id %}">Edit</a></td>
+        <td><a href="{% url "task-confirm-delete" task.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+        <h3>Tasks are empty.</h3>
+    {% endfor %}
+</table>
+{% endblock content %}
